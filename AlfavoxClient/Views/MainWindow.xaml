@@ -1,0 +1,45 @@
+﻿<Window x:Class="AlfavoxClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlfavoxClient"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="e-skutnik" Height="350" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="System">
+                <MenuItem Command="Find" />
+                <MenuItem Command="Close" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="Keys:" HorizontalAlignment="Right" Margin="10,0,10,0" VerticalContentAlignment="Center" />
+            <TextBox Margin="2" Grid.Column="1" Text="{Binding Keys, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+            <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Items}" />
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Margin="20,5,5,5" MinWidth="75" Command="Find" IsDefault="True" Content="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" />
+                <Button Margin="20,5,5,5" MinWidth="75" Command="Close" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" IsCancel="True" Content="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" />
+            </StackPanel>
+        </Grid>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Content="{Binding Status}" MinHeight="18"/>
+        </StatusBar>
+
+    </Grid>
+</Window>
